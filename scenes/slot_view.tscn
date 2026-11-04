@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c7slotviewuid"]
+
+[ext_resource type="Script" uid="uid://broci1gggc7rm" path="res://scripts/slot_view.gd" id="1_script"]
+
+[node name="SlotView" type="PanelContainer" unique_id=1742961147]
+custom_minimum_size = Vector2(130, 150)
+offset_right = 130.0
+offset_bottom = 150.0
+script = ExtResource("1_script")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1057250497]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="VBox" unique_id=2070460750]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Слот 1"
+horizontal_alignment = 1
+
+[node name="CategoryLabel" type="Label" parent="VBox" unique_id=1203049172]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.65, 0.75, 1)
+theme_override_font_sizes/font_size = 10
+text = "Скелет"
+horizontal_alignment = 1
+
+[node name="DescLabel" type="Label" parent="VBox" unique_id=482430053]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 10
+text = "Описание"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="StatsLabel" type="Label" parent="VBox" unique_id=687088881]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.42, 0.42, 1)
+theme_override_font_sizes/font_size = 13
+text = "1 ⚔ | 1 🩸"
+horizontal_alignment = 1
+
+[node name="ActionButton" type="Button" parent="VBox" unique_id=1248911504]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Действие"

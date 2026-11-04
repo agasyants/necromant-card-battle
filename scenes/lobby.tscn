@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://dalobbyuid"]
+
+[ext_resource type="Script" path="res://scripts/lobby.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.0666667, 0.0509804, 0.0862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.11, 0.09, 0.15, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.25, 0.5, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="Panel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(500, 520)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -260.0
+offset_right = 250.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.95, 1)
+theme_override_font_sizes/font_size = 24
+text = "КРИПТА ДВУХ КОРОЛЕЙ"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.55, 0.7, 1)
+theme_override_font_sizes/font_size = 13
+text = "PvP дуэль некромантов по локальной сети"
+horizontal_alignment = 1
+
+[node name="HSeparator1" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Ваше имя в игре:"
+
+[node name="NameInput" type="LineEdit" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Некромант 1"
+placeholder_text = "Введите имя..."
+
+[node name="HostSection" type="VBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HostLabel" type="Label" parent="Panel/VBox/HostSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.75, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = "Режим 1: Создать сервер (Хост)"
+
+[node name="HBox" type="HBoxContainer" parent="Panel/VBox/HostSection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PortLabel" type="Label" parent="Panel/VBox/HostSection/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Порт:"
+
+[node name="PortInput" type="LineEdit" parent="Panel/VBox/HostSection/HBox"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "7777"
+
+[node name="HostButton" type="Button" parent="Panel/VBox/HostSection"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Создать лобби (Хост)"
+
+[node name="IpInfoLabel" type="Label" parent="Panel/VBox/HostSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.85, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ваш локальный IP: 127.0.0.1"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="JoinSection" type="VBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="JoinLabel" type="Label" parent="Panel/VBox/JoinSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Режим 2: Подключиться к хосту"
+
+[node name="HBox" type="HBoxContainer" parent="Panel/VBox/JoinSection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IpLabel" type="Label" parent="Panel/VBox/JoinSection/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "IP хоста:"
+
+[node name="IpInput" type="LineEdit" parent="Panel/VBox/JoinSection/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "127.0.0.1"
+placeholder_text = "IP (127.0.0.1 или LAN IP)"
+
+[node name="PortLabel" type="Label" parent="Panel/VBox/JoinSection/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Порт:"
+
+[node name="PortInput" type="LineEdit" parent="Panel/VBox/JoinSection/HBox"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "7777"
+
+[node name="JoinButton" type="Button" parent="Panel/VBox/JoinSection"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Подключиться к игре"
+
+[node name="StatusLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 12
+text = "Готов к подключению..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BackBtn" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "« В главное меню"
