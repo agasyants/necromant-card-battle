@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dalobbyuid"]
+[gd_scene load_steps=5 format=3 uid="uid://c9lobbyuid"]
 
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="1_script"]
 
@@ -12,6 +12,18 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.35, 0.25, 0.5, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.13, 0.1, 0.18, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.9, 0.7, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_left = 12
@@ -36,62 +48,73 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
 [node name="Panel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(500, 520)
+custom_minimum_size = Vector2(540, 580)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -260.0
-offset_right = 250.0
-offset_bottom = 260.0
+offset_left = -270.0
+offset_top = -290.0
+offset_right = 270.0
+offset_bottom = 290.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="Panel/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.8, 0.95, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 text = "КРИПТА ДВУХ КОРОЛЕЙ"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="Panel/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.55, 0.7, 1)
-theme_override_font_sizes/font_size = 13
-text = "PvP дуэль некромантов по локальной сети"
+theme_override_font_sizes/font_size = 12
+text = "Сетевая дуэль двух некромантов (LAN / Wi-Fi)"
 horizontal_alignment = 1
+
+[node name="InstructionBtn" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "❓ Инструкция: как играть на 2 ноутбуках без Wi-Fi"
 
 [node name="HSeparator1" type="HSeparator" parent="Panel/VBox"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="Panel/VBox"]
+[node name="NameHBox" type="HBoxContainer" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Ваше имя в игре:"
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="Panel/VBox/NameHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Ваше имя:"
 
 [node name="NameInput" type="LineEdit" parent="Panel/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
-text = "Некромант 1"
+text = "Некромант"
 placeholder_text = "Введите имя..."
 
 [node name="HostSection" type="VBoxContainer" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
 [node name="HostLabel" type="Label" parent="Panel/VBox/HostSection"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.75, 0.3, 1)
-theme_override_font_sizes/font_size = 14
-text = "Режим 1: Создать сервер (Хост)"
+theme_override_colors/font_color = Color(0.95, 0.8, 0.35, 1)
+theme_override_font_sizes/font_size = 13
+text = "👑 Ноутбук 1: Создать сервер (Хост)"
 
 [node name="HBox" type="HBoxContainer" parent="Panel/VBox/HostSection"]
 layout_mode = 2
@@ -103,7 +126,7 @@ theme_override_font_sizes/font_size = 12
 text = "Порт:"
 
 [node name="PortInput" type="LineEdit" parent="Panel/VBox/HostSection/HBox"]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "7777"
@@ -114,25 +137,35 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Создать лобби (Хост)"
 
-[node name="IpInfoLabel" type="Label" parent="Panel/VBox/HostSection"]
+[node name="IpBox" type="HBoxContainer" parent="Panel/VBox/HostSection"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.85, 0.65, 1)
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="IpInfoLabel" type="Label" parent="Panel/VBox/HostSection/IpBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.9, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "Ваш IP для второго игрока: 127.0.0.1"
+
+[node name="CopyIpBtn" type="Button" parent="Panel/VBox/HostSection/IpBox"]
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
 theme_override_font_sizes/font_size = 11
-text = "Ваш локальный IP: 127.0.0.1"
-horizontal_alignment = 1
+text = "Копировать 📋"
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/VBox"]
 layout_mode = 2
 
 [node name="JoinSection" type="VBoxContainer" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
 [node name="JoinLabel" type="Label" parent="Panel/VBox/JoinSection"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
-theme_override_font_sizes/font_size = 14
-text = "Режим 2: Подключиться к хосту"
+theme_override_colors/font_color = Color(0.45, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "⚔ Ноутбук 2: Подключиться к хосту"
 
 [node name="HBox" type="HBoxContainer" parent="Panel/VBox/JoinSection"]
 layout_mode = 2
@@ -148,7 +181,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 12
 text = "127.0.0.1"
-placeholder_text = "IP (127.0.0.1 или LAN IP)"
+placeholder_text = "Введите IP хоста (например 192.168.137.1)"
 
 [node name="PortLabel" type="Label" parent="Panel/VBox/JoinSection/HBox"]
 layout_mode = 2
@@ -156,10 +189,16 @@ theme_override_font_sizes/font_size = 12
 text = "Порт:"
 
 [node name="PortInput" type="LineEdit" parent="Panel/VBox/JoinSection/HBox"]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "7777"
+
+[node name="JoinHint" type="Label" parent="Panel/VBox/JoinSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.65, 0.75, 1)
+theme_override_font_sizes/font_size = 10
+text = "💡 При хот-споте вводите IP с экрана Ноутбука 1 (обычно 192.168.137.1)"
 
 [node name="JoinButton" type="Button" parent="Panel/VBox/JoinSection"]
 custom_minimum_size = Vector2(0, 34)
@@ -176,7 +215,61 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="BackBtn" type="Button" parent="Panel/VBox"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "« В главное меню"
+
+[node name="InstructionModal" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -240.0
+offset_right = 300.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBox" type="VBoxContainer" parent="InstructionModal"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="InstructionModal/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 0.7, 1)
+theme_override_font_sizes/font_size = 16
+text = "📡 КАК ИГРАТЬ НА 2 НОУТБУКАХ БЕЗ WI-FI И ИНТЕРНЕТА"
+horizontal_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="InstructionModal/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[b]Вам не нужен роутер или интернет![/b] Ноутбук сам создаст локальную сеть:
+
+[color=#ffd43b][b]Шаг 1: На Ноутбуке 1 (Хост / Раздающий):[/b][/color]
+1. Откройте настройки Windows: [b]Win + I[/b] ➔ [b]Сеть и интернет[/b] ➔ [b]Мобильный хот-спот[/b].
+2. Включите его (интернет не нужен, ноутбук создаст локальную Wi-Fi точку).
+3. В этой игре нажмите [b]«Создать лобби (Хост)»[/b].
+4. Игра покажет ваш IP (зелёная надпись, обычно [b]192.168.137.1[/b]).
+
+[color=#74c0fc][b]Шаг 2: На Ноутбуке 2 (Клиент):[/b][/color]
+1. В списке доступных Wi-Fi сетей найдите сеть Ноутбука 1 и подключитесь к ней.
+2. В этой игре введите IP хоста в поле [b]«IP хоста»[/b] (например, [b]192.168.137.1[/b]).
+3. Нажмите кнопку [b]«Подключиться к игре»[/b].
+
+[color=#38d9a9]Матч начнётся автоматически, как только второй игрок подключится![/color]"
+
+[node name="CloseBtn" type="Button" parent="InstructionModal/VBox"]
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "Понятно, закрыть"

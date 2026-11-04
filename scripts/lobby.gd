@@ -5,9 +5,12 @@ signal start_game_requested
 signal back_to_menu_requested
 
 @onready var name_input: LineEdit = $Panel/VBox/NameInput
+@onready var instruction_btn: Button = $Panel/VBox/InstructionBtn
+
 @onready var host_port_input: LineEdit = $Panel/VBox/HostSection/HBox/PortInput
 @onready var host_btn: Button = $Panel/VBox/HostSection/HostButton
-@onready var ip_info_label: Label = $Panel/VBox/HostSection/IpInfoLabel
+@onready var ip_info_label: Label = $Panel/VBox/HostSection/IpBox/IpInfoLabel
+@onready var copy_ip_btn: Button = $Panel/VBox/HostSection/IpBox/CopyIpBtn
 
 @onready var client_ip_input: LineEdit = $Panel/VBox/JoinSection/HBox/IpInput
 @onready var client_port_input: LineEdit = $Panel/VBox/JoinSection/HBox/PortInput
@@ -16,9 +19,21 @@ signal back_to_menu_requested
 @onready var status_label: Label = $Panel/VBox/StatusLabel
 @onready var back_btn: Button = $Panel/VBox/BackBtn
 
+# Модальное окно инструкции
+@onready var instruction_modal: PanelContainer = $InstructionModal
+@onready var close_instruction_btn: Button = $InstructionModal/VBox/CloseBtn
+
+var detected_ip: String = "127.0.0.1"
+
 func _ready() -> void:
+	instruction_modal.visible = false
+	instruction_btn.pressed.connect(func(): instruction_modal.visible = true)
+	close_instruction_btn.pressed.connect(func(): instruction_modal.visible = false)
+	
 	host_btn.pressed.connect(_on_host_pressed)
 	join_btn.pressed.connect(_on_join_pressed)
+	copy_ip_btn.pressed.connect(_on_copy_ip_pressed)
+	
 	back_btn.pressed.connect(func():
 		NetworkManager.disconnect_game()
 		back_to_menu_requested.emit()
@@ -30,16 +45,22 @@ func _ready() -> void:
 	NetworkManager.players_updated.connect(_on_players_updated)
 	NetworkManager.server_disconnected.connect(_on_server_disconnected)
 	
-	var local_ip = NetworkManager.get_local_ip()
-	ip_info_label.text = "Ваш локальный IP: " + local_ip
+	detected_ip = NetworkManager.get_local_ip()
+	ip_info_label.text = "Ваш IP для второго игрока: " + detected_ip
 	
-	if OS.get_cmdline_args().has("--client"):
-		name_input.text = "Некромант 2"
-	else:
-		name_input.text = "Некромант 1"
+	# Если мы на хотспоте, по умолчанию в поле присоединения подставим типичный IP
+	if detected_ip.begins_with("192.168.137."):
+		client_ip_input.text = detected_ip
+	elif not detected_ip.is_empty() and detected_ip != "127.0.0.1":
+		client_ip_input.text = detected_ip
 
 func set_initial_name(pname: String) -> void:
 	name_input.text = pname
+
+func _on_copy_ip_pressed() -> void:
+	DisplayServer.clipboard_set(detected_ip)
+	status_label.text = "IP скопирован в буфер обмена: " + detected_ip
+	status_label.modulate = Color("#38d9a9")
 
 func _on_host_pressed() -> void:
 	var player_name = name_input.text.strip_edges()
@@ -55,7 +76,7 @@ func _on_host_pressed() -> void:
 	
 	var err = NetworkManager.host_game(port, player_name)
 	if err == OK:
-		status_label.text = "Сервер запущен! Ожидание второго игрока..."
+		status_label.text = "Сервер запущен! Сообщите свой IP (%s) второму игроку." % detected_ip
 		status_label.modulate = Color("#38d9a9")
 		host_btn.disabled = true
 		join_btn.disabled = true
@@ -108,7 +129,6 @@ func _on_peer_connected(peer_id: int) -> void:
 
 func _on_players_updated() -> void:
 	var count = NetworkManager.players.size()
-	print("[Lobby] Игроков в лобби: ", count)
 	if count >= 2:
 		status_label.text = "Оба игрока подключены! Запуск матча..."
 		status_label.modulate = Color("#38d9a9")

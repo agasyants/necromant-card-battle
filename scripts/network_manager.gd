@@ -108,6 +108,6 @@ func sync_player_list(synced_players: Dictionary) -> void:
 
 func get_local_ip() -> String:
 	for ip in IP.get_local_addresses():
-		if ip.begins_with("192.168.") or ip.begins_with("10.") or (ip.begins_with("172.") and not ip.begins_with("172.16.0.")):
+		if ip.begins_with("192.168.") or ip.begins_with("10.") or ip.begins_with("169.254.") or (ip.begins_with("172.") and not ip.begins_with("172.16.0.")):
 			return ip
 	return "127.0.0.1"

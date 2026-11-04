@@ -28,6 +28,15 @@ func _ready() -> void:
 	NetworkManager.peer_disconnected.connect(_on_peer_disconnected)
 	NetworkManager.server_disconnected.connect(_on_server_disconnected)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_F11 or (event.keycode == KEY_ENTER and event.alt_pressed):
+			var current_mode = DisplayServer.window_get_mode()
+			if current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN or current_mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			else:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 func _on_play_ai_selected(player_name: String) -> void:
 	main_menu.visible = false
 	lobby.visible = false
