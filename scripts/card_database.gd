@@ -14,7 +14,9 @@ const CARDS: Dictionary = {
 		"attack": 1,
 		"health": 1,
 		"desc": "При смерти: дарует +1 доп. душу (всего +2).",
-		"color": Color("#868e96"),
+		"color": Color("#adb5bd"),
+		"art": "", # Путь к файлу картинки, например "res://assets/cards/bone_servant.png"
+		"art_icon": "💀"
 	},
 	"heap_of_bones": {
 		"id": "heap_of_bones",
@@ -26,7 +28,9 @@ const CARDS: Dictionary = {
 		"attack": 0,
 		"health": 3,
 		"desc": "При смерти: призывает Костяного Слугу (1/1).",
-		"color": Color("#adb5bd"),
+		"color": Color("#868e96"),
+		"art": "",
+		"art_icon": "🦴"
 	},
 	"bone_golem": {
 		"id": "bone_golem",
@@ -38,7 +42,9 @@ const CARDS: Dictionary = {
 		"attack": 3,
 		"health": 5,
 		"desc": "Пассив: +1 к силе за каждого павшего союзника.",
-		"color": Color("#ced4da"),
+		"color": Color("#dee2e6"),
+		"art": "",
+		"art_icon": "🗿"
 	},
 	"whisper_of_darkness": {
 		"id": "whisper_of_darkness",
@@ -51,6 +57,8 @@ const CARDS: Dictionary = {
 		"health": 2,
 		"desc": "При выходе: крадет 1 победное очко у оппонента.",
 		"color": Color("#4dabf7"),
+		"art": "",
+		"art_icon": "👻"
 	},
 	"wall_of_flesh": {
 		"id": "wall_of_flesh",
@@ -63,6 +71,8 @@ const CARDS: Dictionary = {
 		"health": 6,
 		"desc": "Пассив: соседние союзники получают +1/+1.",
 		"color": Color("#f06595"),
+		"art": "",
+		"art_icon": "🥩"
 	},
 	"bone_king": {
 		"id": "bone_king",
@@ -75,6 +85,8 @@ const CARDS: Dictionary = {
 		"health": 6,
 		"desc": "Пассив: все ваши скелеты получают +1 к силе.",
 		"color": Color("#ffd43b"),
+		"art": "",
+		"art_icon": "👑"
 	},
 	"crypt_ghoul": {
 		"id": "crypt_ghoul",
@@ -87,6 +99,8 @@ const CARDS: Dictionary = {
 		"health": 3,
 		"desc": "При смерти: наносит 2 урона существу напротив.",
 		"color": Color("#51cf66"),
+		"art": "",
+		"art_icon": "🧟"
 	},
 	"shadow_assassin": {
 		"id": "shadow_assassin",
@@ -99,6 +113,8 @@ const CARDS: Dictionary = {
 		"health": 1,
 		"desc": "При выходе: наносит 2 урона существу напротив.",
 		"color": Color("#b197fc"),
+		"art": "",
+		"art_icon": "🗡️"
 	}
 }
 

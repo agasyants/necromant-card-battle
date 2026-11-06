@@ -1,45 +1,117 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8gametableuid"]
+[gd_scene load_steps=10 format=3 uid="uid://c8gametableuid"]
 
 [ext_resource type="Script" path="res://scripts/game_table.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
-bg_color = Color(0.0666667, 0.0509804, 0.0862745, 1)
+bg_color = Color(0.05, 0.04, 0.07, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pile"]
-bg_color = Color(0.12, 0.09, 0.17, 0.85)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.35, 0.25, 0.45, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_left = 8
-corner_radius_bottom_right = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
-bg_color = Color(0.12, 0.1, 0.16, 0.96)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.443137, 0.313726, 0.760784, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.09, 0.07, 0.13, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.35, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_left = 10
 corner_radius_bottom_right = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_log"]
-bg_color = Color(0.08, 0.06, 0.11, 0.85)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 6.0
+bg_color = Color(0.1, 0.08, 0.14, 0.95)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.25, 0.2, 0.35, 1)
+border_color = Color(0.32, 0.24, 0.44, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pile"]
+bg_color = Color(0.12, 0.09, 0.17, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.38, 0.28, 0.5, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_step"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.11, 0.09, 0.15, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.22, 0.38, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_left = 6
 corner_radius_bottom_right = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_countdown"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.14, 0.09, 0.12, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.35, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_log"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.06, 0.05, 0.09, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.16, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.11, 0.09, 0.16, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.4, 0.85, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
 
 [node name="GameTable" type="Control"]
 layout_mode = 3
@@ -59,338 +131,532 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="MainHBox" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = 8.0
+offset_top = 12.0
 offset_right = -16.0
-offset_bottom = -8.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="LeftPanel" type="PanelContainer" parent="MainHBox"]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/LeftPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderLabel" type="Label" parent="MainHBox/LeftPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.65, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+text = "📜  ЖУРНАЛ БИТВЫ"
+
+[node name="LogBox" type="PanelContainer" parent="MainHBox/LeftPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_log")
+
+[node name="BattleLog" type="RichTextLabel" parent="MainHBox/LeftPanel/VBox/LogBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+scroll_following = true
+
+[node name="TipsPanel" type="PanelContainer" parent="MainHBox/LeftPanel/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_step")
+
+[node name="TipsVBox" type="VBoxContainer" parent="MainHBox/LeftPanel/VBox/TipsPanel"]
+layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="TopBar" type="HBoxContainer" parent="VBox"]
+[node name="TipTitle" type="Label" parent="MainHBox/LeftPanel/VBox/TipsPanel/TipsVBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 11
+text = "💡 ПРАВИЛА И ПОДСКАЗКИ:"
 
-[node name="OpponentInfo" type="HBoxContainer" parent="VBox/TopBar"]
+[node name="Tip1" type="Label" parent="MainHBox/LeftPanel/VBox/TipsPanel/TipsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 10
+text = "• Очки даются ТОЛЬКО за прямой урон по склепу врага (до 10 ⭐)."
+autowrap_mode = 3
+
+[node name="Tip2" type="Label" parent="MainHBox/LeftPanel/VBox/TipsPanel/TipsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 10
+text = "• Смерть существ даёт 💀 души для призыва."
+autowrap_mode = 3
+
+[node name="Tip3" type="Label" parent="MainHBox/LeftPanel/VBox/TipsPanel/TipsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "• Полноэкранный режим: клавиша [F11] или [Alt+Enter]."
+autowrap_mode = 3
+
+[node name="CenterArena" type="VBoxContainer" parent="MainHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 24
+theme_override_constants/separation = 10
 
-[node name="NameLabel" type="Label" parent="VBox/TopBar/OpponentInfo"]
+[node name="OpponentBar" type="PanelContainer" parent="MainHBox/CenterArena"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+
+[node name="OpponentInfo" type="HBoxContainer" parent="MainHBox/CenterArena/OpponentBar"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="NameLabel" type="Label" parent="MainHBox/CenterArena/OpponentBar/OpponentInfo"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.35, 0.35, 1)
-theme_override_font_sizes/font_size = 14
-text = "💀 Оппонент"
+theme_override_font_sizes/font_size = 15
+text = "💀 Лич-Архивариус"
 
-[node name="ManaLabel" type="Label" parent="VBox/TopBar/OpponentInfo"]
+[node name="ManaLabel" type="Label" parent="MainHBox/CenterArena/OpponentBar/OpponentInfo"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
 theme_override_font_sizes/font_size = 14
 text = "Мана: 1/1 🔮"
 
-[node name="SoulsLabel" type="Label" parent="VBox/TopBar/OpponentInfo"]
+[node name="SoulsLabel" type="Label" parent="MainHBox/CenterArena/OpponentBar/OpponentInfo"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 0.9, 0.7, 1)
+theme_override_colors/font_color = Color(0.4, 0.9, 0.65, 1)
 theme_override_font_sizes/font_size = 14
 text = "Души: 0 💀"
 
-[node name="ScoreLabel" type="Label" parent="VBox/TopBar/OpponentInfo"]
+[node name="ScoreLabel" type="Label" parent="MainHBox/CenterArena/OpponentBar/OpponentInfo"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
 theme_override_font_sizes/font_size = 15
-text = "Очки: 0 / 10 ⭐"
+text = "Очки победы: 0 / 10 ⭐"
 
-[node name="HandCountLabel" type="Label" parent="VBox/TopBar/OpponentInfo"]
+[node name="Spacer" type="Control" parent="MainHBox/CenterArena/OpponentBar/OpponentInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HandCountLabel" type="Label" parent="MainHBox/CenterArena/OpponentBar/OpponentInfo"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.7, 0.85, 1)
-theme_override_font_sizes/font_size = 14
-text = "В руке: 3 🎴"
+theme_override_font_sizes/font_size = 13
+text = "В руке врага: 3 🎴"
 
-[node name="OpponentBoardArea" type="HBoxContainer" parent="VBox"]
+[node name="OpponentBoardArea" type="HBoxContainer" parent="MainHBox/CenterArena"]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="OppGraveyard" type="PanelContainer" parent="VBox/OpponentBoardArea"]
-custom_minimum_size = Vector2(85, 145)
+[node name="OppGraveyard" type="PanelContainer" parent="MainHBox/CenterArena/OpponentBoardArea"]
+custom_minimum_size = Vector2(95, 165)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pile")
 
-[node name="VBox" type="VBoxContainer" parent="VBox/OpponentBoardArea/OppGraveyard"]
+[node name="VBox" type="VBoxContainer" parent="MainHBox/CenterArena/OpponentBoardArea/OppGraveyard"]
 layout_mode = 2
 alignment = 1
 
-[node name="Icon" type="Label" parent="VBox/OpponentBoardArea/OppGraveyard/VBox"]
+[node name="Icon" type="Label" parent="MainHBox/CenterArena/OpponentBoardArea/OppGraveyard/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "⚰️"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="VBox/OpponentBoardArea/OppGraveyard/VBox"]
+[node name="Label" type="Label" parent="MainHBox/CenterArena/OpponentBoardArea/OppGraveyard/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Склеп врага"
 horizontal_alignment = 1
 
-[node name="CountLabel" type="Label" parent="VBox/OpponentBoardArea/OppGraveyard/VBox"]
+[node name="CountLabel" type="Label" parent="MainHBox/CenterArena/OpponentBoardArea/OppGraveyard/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 14
 text = "0 💀"
 horizontal_alignment = 1
 
-[node name="OppSlotsContainer" type="HBoxContainer" parent="VBox/OpponentBoardArea"]
-layout_mode = 2
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="OppDeck" type="PanelContainer" parent="VBox/OpponentBoardArea"]
-custom_minimum_size = Vector2(85, 145)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pile")
-
-[node name="VBox" type="VBoxContainer" parent="VBox/OpponentBoardArea/OppDeck"]
-layout_mode = 2
-alignment = 1
-
-[node name="Icon" type="Label" parent="VBox/OpponentBoardArea/OppDeck/VBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "🎴"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="VBox/OpponentBoardArea/OppDeck/VBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Колода"
-horizontal_alignment = 1
-
-[node name="CountLabel" type="Label" parent="VBox/OpponentBoardArea/OppDeck/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
-theme_override_font_sizes/font_size = 13
-text = "12"
-horizontal_alignment = 1
-
-[node name="MidBar" type="HBoxContainer" parent="VBox"]
+[node name="OppSlotsContainer" type="HBoxContainer" parent="MainHBox/CenterArena/OpponentBoardArea"]
 layout_mode = 2
 theme_override_constants/separation = 14
-
-[node name="LogBox" type="PanelContainer" parent="VBox/MidBar"]
-custom_minimum_size = Vector2(380, 100)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_log")
-
-[node name="BattleLog" type="RichTextLabel" parent="VBox/MidBar/LogBox"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-bbcode_enabled = true
-scroll_following = true
-
-[node name="CenterBox" type="VBoxContainer" parent="VBox/MidBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 4
 alignment = 1
 
-[node name="PhaseLabel" type="Label" parent="VBox/MidBar/CenterBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.7, 0.85, 1)
-theme_override_font_sizes/font_size = 12
-text = "ЦИКЛ 1"
-horizontal_alignment = 1
-
-[node name="CycleProgressLabel" type="Label" parent="VBox/MidBar/CenterBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
-theme_override_font_sizes/font_size = 13
-text = "[● Ход 1] [○ Ход 2] [○ Ход 3]  ➔  ⚔️ БОЙ"
-horizontal_alignment = 1
-
-[node name="TurnBanner" type="Label" parent="VBox/MidBar/CenterBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "ВАШ ХОД (1 из 3)"
-horizontal_alignment = 1
-
-[node name="ButtonsRow" type="HBoxContainer" parent="VBox/MidBar/CenterBox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="EndTurnButton" type="Button" parent="VBox/MidBar/CenterBox/ButtonsRow"]
-custom_minimum_size = Vector2(170, 36)
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Завершить ход ➔"
-
-[node name="DiscardModeButton" type="Button" parent="VBox/MidBar/CenterBox/ButtonsRow"]
-custom_minimum_size = Vector2(130, 36)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Замена карт 🔄"
-
-[node name="DiscardBar" type="HBoxContainer" parent="VBox/MidBar/CenterBox"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="DiscardInfoLabel" type="Label" parent="VBox/MidBar/CenterBox/DiscardBar"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 12
-text = "Выберите карты для замены (0)"
-
-[node name="ConfirmDiscardBtn" type="Button" parent="VBox/MidBar/CenterBox/DiscardBar"]
-custom_minimum_size = Vector2(150, 32)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Заменить на новые ➔"
-
-[node name="CancelDiscardBtn" type="Button" parent="VBox/MidBar/CenterBox/DiscardBar"]
-custom_minimum_size = Vector2(80, 32)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Отмена"
-
-[node name="PlayerBoardArea" type="HBoxContainer" parent="VBox"]
-layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="PlayerGraveyard" type="PanelContainer" parent="VBox/PlayerBoardArea"]
-custom_minimum_size = Vector2(85, 145)
+[node name="OppDeck" type="PanelContainer" parent="MainHBox/CenterArena/OpponentBoardArea"]
+custom_minimum_size = Vector2(95, 165)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pile")
 
-[node name="VBox" type="VBoxContainer" parent="VBox/PlayerBoardArea/PlayerGraveyard"]
+[node name="VBox" type="VBoxContainer" parent="MainHBox/CenterArena/OpponentBoardArea/OppDeck"]
 layout_mode = 2
 alignment = 1
 
-[node name="Icon" type="Label" parent="VBox/PlayerBoardArea/PlayerGraveyard/VBox"]
+[node name="Icon" type="Label" parent="MainHBox/CenterArena/OpponentBoardArea/OppDeck/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "⚰️"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="VBox/PlayerBoardArea/PlayerGraveyard/VBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Ваш склеп"
-horizontal_alignment = 1
-
-[node name="CountLabel" type="Label" parent="VBox/PlayerBoardArea/PlayerGraveyard/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 13
-text = "0 💀"
-horizontal_alignment = 1
-
-[node name="PlayerSlotsContainer" type="HBoxContainer" parent="VBox/PlayerBoardArea"]
-layout_mode = 2
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="PlayerDeck" type="PanelContainer" parent="VBox/PlayerBoardArea"]
-custom_minimum_size = Vector2(85, 145)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pile")
-
-[node name="VBox" type="VBoxContainer" parent="VBox/PlayerBoardArea/PlayerDeck"]
-layout_mode = 2
-alignment = 1
-
-[node name="Icon" type="Label" parent="VBox/PlayerBoardArea/PlayerDeck/VBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "🎴"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="VBox/PlayerBoardArea/PlayerDeck/VBox"]
+[node name="Label" type="Label" parent="MainHBox/CenterArena/OpponentBoardArea/OppDeck/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
-text = "Ваша колода"
+text = "Колода врага"
 horizontal_alignment = 1
 
-[node name="CountLabel" type="Label" parent="VBox/PlayerBoardArea/PlayerDeck/VBox"]
+[node name="CountLabel" type="Label" parent="MainHBox/CenterArena/OpponentBoardArea/OppDeck/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 14
 text = "12"
 horizontal_alignment = 1
 
-[node name="BottomBar" type="HBoxContainer" parent="VBox"]
+[node name="CombatDividerArea" type="VBoxContainer" parent="MainHBox/CenterArena"]
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
+alignment = 1
 
-[node name="PlayerInfo" type="HBoxContainer" parent="VBox/BottomBar"]
+[node name="TurnBanner" type="Label" parent="MainHBox/CenterArena/CombatDividerArea"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 24
+theme_override_colors/font_color = Color(0.22, 0.85, 0.65, 1)
+theme_override_font_sizes/font_size = 16
+text = "★ ВАШ ХОД (Ход 1 из 3) ★"
+horizontal_alignment = 1
 
-[node name="NameLabel" type="Label" parent="VBox/BottomBar/PlayerInfo"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.85, 1, 1)
-theme_override_font_sizes/font_size = 14
-text = "🧙 Вы"
-
-[node name="ManaLabel" type="Label" parent="VBox/BottomBar/PlayerInfo"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
-theme_override_font_sizes/font_size = 14
-text = "Мана: 1/1 🔮"
-
-[node name="SoulsLabel" type="Label" parent="VBox/BottomBar/PlayerInfo"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 0.9, 0.7, 1)
-theme_override_font_sizes/font_size = 14
-text = "Души: 0 💀"
-
-[node name="ScoreLabel" type="Label" parent="VBox/BottomBar/PlayerInfo"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
-theme_override_font_sizes/font_size = 15
-text = "Очки: 0 / 10 ⭐"
-
-[node name="HandArea" type="VBoxContainer" parent="VBox"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TargetHintLabel" type="Label" parent="VBox/HandArea"]
+[node name="TargetHintLabel" type="Label" parent="MainHBox/CenterArena/CombatDividerArea"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.9, 0.7, 1)
 theme_override_font_sizes/font_size = 13
 text = "➔ Выберите пустой слот на вашем поле"
 horizontal_alignment = 1
 
-[node name="Scroll" type="ScrollContainer" parent="VBox/HandArea"]
+[node name="PlayerBoardArea" type="HBoxContainer" parent="MainHBox/CenterArena"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PlayerGraveyard" type="PanelContainer" parent="MainHBox/CenterArena/PlayerBoardArea"]
+custom_minimum_size = Vector2(95, 165)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pile")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/CenterArena/PlayerBoardArea/PlayerGraveyard"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="MainHBox/CenterArena/PlayerBoardArea/PlayerGraveyard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "⚰️"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MainHBox/CenterArena/PlayerBoardArea/PlayerGraveyard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Ваш склеп"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="MainHBox/CenterArena/PlayerBoardArea/PlayerGraveyard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "0 💀"
+horizontal_alignment = 1
+
+[node name="PlayerSlotsContainer" type="HBoxContainer" parent="MainHBox/CenterArena/PlayerBoardArea"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PlayerDeck" type="PanelContainer" parent="MainHBox/CenterArena/PlayerBoardArea"]
+custom_minimum_size = Vector2(95, 165)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pile")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/CenterArena/PlayerBoardArea/PlayerDeck"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="MainHBox/CenterArena/PlayerBoardArea/PlayerDeck/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "🎴"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MainHBox/CenterArena/PlayerBoardArea/PlayerDeck/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Ваша колода"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="MainHBox/CenterArena/PlayerBoardArea/PlayerDeck/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "12"
+horizontal_alignment = 1
+
+[node name="PlayerBar" type="PanelContainer" parent="MainHBox/CenterArena"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+
+[node name="PlayerInfo" type="HBoxContainer" parent="MainHBox/CenterArena/PlayerBar"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="NameLabel" type="Label" parent="MainHBox/CenterArena/PlayerBar/PlayerInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "🧙 Вы"
+
+[node name="ManaLabel" type="Label" parent="MainHBox/CenterArena/PlayerBar/PlayerInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Мана: 1/1 🔮"
+
+[node name="SoulsLabel" type="Label" parent="MainHBox/CenterArena/PlayerBar/PlayerInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.65, 1)
+theme_override_font_sizes/font_size = 14
+text = "Души: 0 💀"
+
+[node name="ScoreLabel" type="Label" parent="MainHBox/CenterArena/PlayerBar/PlayerInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "Очки победы: 0 / 10 ⭐"
+
+[node name="HandArea" type="PanelContainer" parent="MainHBox/CenterArena"]
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Scroll" type="ScrollContainer" parent="MainHBox/CenterArena/HandArea"]
+layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="HandContainer" type="HBoxContainer" parent="VBox/HandArea/Scroll"]
+[node name="HandContainer" type="HBoxContainer" parent="MainHBox/CenterArena/HandArea/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 14
 alignment = 1
+
+[node name="RightPanel" type="PanelContainer" parent="MainHBox"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/RightPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RoundHeader" type="VBoxContainer" parent="MainHBox/RightPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="RoundTitle" type="Label" parent="MainHBox/RightPanel/VBox/RoundHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 16
+text = "⚔️  ЦИКЛ БОЯ № 1"
+horizontal_alignment = 1
+
+[node name="RoundSub" type="Label" parent="MainHBox/RightPanel/VBox/RoundHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.65, 0.75, 1)
+theme_override_font_sizes/font_size = 11
+text = "Каждые 3 хода наступает всеобщая битва"
+horizontal_alignment = 1
+
+[node name="CombatCountdownCard" type="PanelContainer" parent="MainHBox/RightPanel/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_countdown")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/RightPanel/VBox/CombatCountdownCard"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="CountdownTitle" type="Label" parent="MainHBox/RightPanel/VBox/CombatCountdownCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "ДО СРАЖЕНИЯ СТЕНОК:"
+
+[node name="CountdownValue" type="Label" parent="MainHBox/RightPanel/VBox/CombatCountdownCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.45, 1)
+theme_override_font_sizes/font_size = 15
+text = "Осталось: 2 хода"
+
+[node name="CycleProgressLabel" type="Label" parent="MainHBox/RightPanel/VBox/CombatCountdownCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 12
+text = "[● 1] ➔ [○ 2] ➔ [○ 3] ➔ ⚔️ БОЙ"
+
+[node name="TurnQueueHeader" type="Label" parent="MainHBox/RightPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.65, 0.9, 1)
+theme_override_font_sizes/font_size = 13
+text = "ОЧЕРЁДНОСТЬ ХОДОВ В ЦИКЛЕ:"
+
+[node name="TurnQueueBox" type="VBoxContainer" parent="MainHBox/RightPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Step1" type="PanelContainer" parent="MainHBox/RightPanel/VBox/TurnQueueBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_step")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step1"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step1/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "1. Ход: Игрок 1"
+
+[node name="Status" type="Label" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step1/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.85, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "АКТИВЕН СЕЙЧАС ▶"
+
+[node name="Step2" type="PanelContainer" parent="MainHBox/RightPanel/VBox/TurnQueueBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_step")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step2/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "2. Ход: Игрок 2"
+
+[node name="Status" type="Label" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step2/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.65, 0.75, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ожидание..."
+
+[node name="Step3" type="PanelContainer" parent="MainHBox/RightPanel/VBox/TurnQueueBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_step")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step3"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step3/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "3. Ход: Игрок 1"
+
+[node name="Status" type="Label" parent="MainHBox/RightPanel/VBox/TurnQueueBox/Step3/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.65, 0.75, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ожидание..."
+
+[node name="CombatStep" type="PanelContainer" parent="MainHBox/RightPanel/VBox/TurnQueueBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_countdown")
+
+[node name="VBox" type="VBoxContainer" parent="MainHBox/RightPanel/VBox/TurnQueueBox/CombatStep"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="MainHBox/RightPanel/VBox/TurnQueueBox/CombatStep/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "⚔️  ФАЗА БОЯ"
+
+[node name="Desc" type="Label" parent="MainHBox/RightPanel/VBox/TurnQueueBox/CombatStep/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.85, 1)
+theme_override_font_sizes/font_size = 10
+text = "Все существа сходятся в бою стенка на стенку!"
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="MainHBox/RightPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionBox" type="VBoxContainer" parent="MainHBox/RightPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="EndTurnButton" type="Button" parent="MainHBox/RightPanel/VBox/ActionBox"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Завершить ход ➔"
+
+[node name="DiscardModeButton" type="Button" parent="MainHBox/RightPanel/VBox/ActionBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Замена карт 🔄 (1 раз в ход)"
+
+[node name="DiscardBar" type="VBoxContainer" parent="MainHBox/RightPanel/VBox/ActionBox"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="DiscardInfoLabel" type="Label" parent="MainHBox/RightPanel/VBox/ActionBox/DiscardBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Выберите карты для замены (0)"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="MainHBox/RightPanel/VBox/ActionBox/DiscardBar"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ConfirmDiscardBtn" type="Button" parent="MainHBox/RightPanel/VBox/ActionBox/DiscardBar/HBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Заменить ➔"
+
+[node name="CancelDiscardBtn" type="Button" parent="MainHBox/RightPanel/VBox/ActionBox/DiscardBar/HBox"]
+custom_minimum_size = Vector2(80, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Отмена"
 
 [node name="PaymentDialog" type="PanelContainer" parent="."]
 visible = false
+custom_minimum_size = Vector2(360, 200)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = -90.0
-offset_right = 175.0
-offset_bottom = 90.0
+offset_left = -180.0
+offset_top = -100.0
+offset_right = 180.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
@@ -398,11 +664,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
 [node name="VBox" type="VBoxContainer" parent="PaymentDialog"]
 layout_mode = 2
 theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="PaymentDialog/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 15
+text = "ВЫБЕРИТЕ СПОСОБ ОПЛАТЫ"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="PaymentDialog/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "Выберите способ оплаты"
+theme_override_font_sizes/font_size = 13
+text = "Оплатить призыв существа:"
 horizontal_alignment = 1
 
 [node name="Buttons" type="HBoxContainer" parent="PaymentDialog/VBox"]
@@ -411,25 +685,26 @@ theme_override_constants/separation = 12
 alignment = 1
 
 [node name="PayManaBtn" type="Button" parent="PaymentDialog/VBox/Buttons"]
-custom_minimum_size = Vector2(110, 40)
+custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Маной (1 🔮)"
+theme_override_font_sizes/font_size = 13
+text = "1 🔮 Мана"
 
 [node name="PaySoulsBtn" type="Button" parent="PaymentDialog/VBox/Buttons"]
-custom_minimum_size = Vector2(110, 40)
+custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Душами (1 💀)"
+theme_override_font_sizes/font_size = 13
+text = "1 💀 Душа"
 
 [node name="PayCancelBtn" type="Button" parent="PaymentDialog/VBox/Buttons"]
-custom_minimum_size = Vector2(80, 40)
+custom_minimum_size = Vector2(70, 36)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Отмена"
 
 [node name="GameOverDialog" type="PanelContainer" parent="."]
 visible = false
+custom_minimum_size = Vector2(440, 240)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -446,19 +721,20 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
 
 [node name="VBox" type="VBoxContainer" parent="GameOverDialog"]
 layout_mode = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="GameOverDialog/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 22
 text = "ПОБЕДА!"
 horizontal_alignment = 1
 
 [node name="DetailsLabel" type="Label" parent="GameOverDialog/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Детали матча"
+theme_override_font_sizes/font_size = 14
+text = "Счёт матча: 10 - 4"
 horizontal_alignment = 1
 
 [node name="Buttons" type="HBoxContainer" parent="GameOverDialog/VBox"]
@@ -467,13 +743,13 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="RestartBtn" type="Button" parent="GameOverDialog/VBox/Buttons"]
-custom_minimum_size = Vector2(140, 36)
+custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
-text = "Сыграть ещё раз"
+text = "Сыграть снова"
 
 [node name="ExitBtn" type="Button" parent="GameOverDialog/VBox/Buttons"]
-custom_minimum_size = Vector2(120, 36)
+custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
-text = "В меню"
+text = "Выйти в меню"

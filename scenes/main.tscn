@@ -1,21 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfbkgxleyp50j"]
+[gd_scene format=3 uid="uid://cfbkgxleyp50j"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
-[ext_resource type="PackedScene" path="res://scenes/main_menu.tscn" id="2_menu"]
-[ext_resource type="PackedScene" path="res://scenes/lobby.tscn" id="3_lobby"]
-[ext_resource type="PackedScene" path="res://scenes/deck_browser.tscn" id="4_deck"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_gm"]
+[ext_resource type="Script" uid="uid://jscfp0i4o32l" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://cmainmenuuid" path="res://scenes/main_menu.tscn" id="2_menu"]
+[ext_resource type="PackedScene" uid="uid://dalobbyuid" path="res://scenes/lobby.tscn" id="3_lobby"]
+[ext_resource type="PackedScene" uid="uid://cqld3fgdfetvf" path="res://scenes/deck_browser.tscn" id="4_deck"]
+[ext_resource type="Script" uid="uid://dkdhafnpfc128" path="res://scripts/game_manager.gd" id="5_gm"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=1444563903]
 script = ExtResource("1_main")
 
-[node name="MainMenu" parent="." instance=ExtResource("2_menu")]
+[node name="MainMenu" parent="." unique_id=1018496473 instance=ExtResource("2_menu")]
 
-[node name="Lobby" parent="." instance=ExtResource("3_lobby")]
+[node name="Lobby" parent="." unique_id=632281186 instance=ExtResource("3_lobby")]
 visible = false
 
-[node name="DeckBrowser" parent="." instance=ExtResource("4_deck")]
+[node name="DeckBrowser" parent="." unique_id=1226928486 instance=ExtResource("4_deck")]
 visible = false
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." unique_id=2118318220]
 script = ExtResource("5_gm")

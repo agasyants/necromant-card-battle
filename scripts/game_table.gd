@@ -3,43 +3,62 @@ extends Control
 
 signal leave_to_lobby_requested
 
-@onready var opp_name_label: Label = $VBox/TopBar/OpponentInfo/NameLabel
-@onready var opp_mana_label: Label = $VBox/TopBar/OpponentInfo/ManaLabel
-@onready var opp_souls_label: Label = $VBox/TopBar/OpponentInfo/SoulsLabel
-@onready var opp_score_label: Label = $VBox/TopBar/OpponentInfo/ScoreLabel
-@onready var opp_hand_label: Label = $VBox/TopBar/OpponentInfo/HandCountLabel
+# Левая панель
+@onready var battle_log_text: RichTextLabel = $MainHBox/LeftPanel/VBox/LogBox/BattleLog
 
-@onready var opp_graveyard_count: Label = $VBox/OpponentBoardArea/OppGraveyard/VBox/CountLabel
-@onready var opp_deck_count: Label = $VBox/OpponentBoardArea/OppDeck/VBox/CountLabel
-@onready var opp_slots_container: HBoxContainer = $VBox/OpponentBoardArea/OppSlotsContainer
+# Центральная арена
+@onready var opp_name_label: Label = $MainHBox/CenterArena/OpponentBar/OpponentInfo/NameLabel
+@onready var opp_mana_label: Label = $MainHBox/CenterArena/OpponentBar/OpponentInfo/ManaLabel
+@onready var opp_souls_label: Label = $MainHBox/CenterArena/OpponentBar/OpponentInfo/SoulsLabel
+@onready var opp_score_label: Label = $MainHBox/CenterArena/OpponentBar/OpponentInfo/ScoreLabel
+@onready var opp_hand_label: Label = $MainHBox/CenterArena/OpponentBar/OpponentInfo/HandCountLabel
 
-@onready var phase_label: Label = $VBox/MidBar/CenterBox/PhaseLabel
-@onready var cycle_progress_label: Label = $VBox/MidBar/CenterBox/CycleProgressLabel
-@onready var turn_banner: Label = $VBox/MidBar/CenterBox/TurnBanner
+@onready var opp_graveyard_count: Label = $MainHBox/CenterArena/OpponentBoardArea/OppGraveyard/VBox/CountLabel
+@onready var opp_deck_count: Label = $MainHBox/CenterArena/OpponentBoardArea/OppDeck/VBox/CountLabel
+@onready var opp_slots_container: HBoxContainer = $MainHBox/CenterArena/OpponentBoardArea/OppSlotsContainer
 
-@onready var buttons_row: HBoxContainer = $VBox/MidBar/CenterBox/ButtonsRow
-@onready var end_turn_btn: Button = $VBox/MidBar/CenterBox/ButtonsRow/EndTurnButton
-@onready var discard_mode_btn: Button = $VBox/MidBar/CenterBox/ButtonsRow/DiscardModeButton
+@onready var turn_banner: Label = $MainHBox/CenterArena/CombatDividerArea/TurnBanner
+@onready var target_hint_label: Label = $MainHBox/CenterArena/CombatDividerArea/TargetHintLabel
 
-@onready var discard_bar: HBoxContainer = $VBox/MidBar/CenterBox/DiscardBar
-@onready var discard_info_label: Label = $VBox/MidBar/CenterBox/DiscardBar/DiscardInfoLabel
-@onready var confirm_discard_btn: Button = $VBox/MidBar/CenterBox/DiscardBar/ConfirmDiscardBtn
-@onready var cancel_discard_btn: Button = $VBox/MidBar/CenterBox/DiscardBar/CancelDiscardBtn
+@onready var player_graveyard_count: Label = $MainHBox/CenterArena/PlayerBoardArea/PlayerGraveyard/VBox/CountLabel
+@onready var player_deck_count: Label = $MainHBox/CenterArena/PlayerBoardArea/PlayerDeck/VBox/CountLabel
+@onready var player_slots_container: HBoxContainer = $MainHBox/CenterArena/PlayerBoardArea/PlayerSlotsContainer
 
-@onready var battle_log_text: RichTextLabel = $VBox/MidBar/LogBox/BattleLog
+@onready var my_name_label: Label = $MainHBox/CenterArena/PlayerBar/PlayerInfo/NameLabel
+@onready var my_mana_label: Label = $MainHBox/CenterArena/PlayerBar/PlayerInfo/ManaLabel
+@onready var my_souls_label: Label = $MainHBox/CenterArena/PlayerBar/PlayerInfo/SoulsLabel
+@onready var my_score_label: Label = $MainHBox/CenterArena/PlayerBar/PlayerInfo/ScoreLabel
 
-@onready var player_graveyard_count: Label = $VBox/PlayerBoardArea/PlayerGraveyard/VBox/CountLabel
-@onready var player_deck_count: Label = $VBox/PlayerBoardArea/PlayerDeck/VBox/CountLabel
-@onready var player_slots_container: HBoxContainer = $VBox/PlayerBoardArea/PlayerSlotsContainer
+@onready var hand_container: HBoxContainer = $MainHBox/CenterArena/HandArea/Scroll/HandContainer
 
-@onready var my_name_label: Label = $VBox/BottomBar/PlayerInfo/NameLabel
-@onready var my_mana_label: Label = $VBox/BottomBar/PlayerInfo/ManaLabel
-@onready var my_souls_label: Label = $VBox/BottomBar/PlayerInfo/SoulsLabel
-@onready var my_score_label: Label = $VBox/BottomBar/PlayerInfo/ScoreLabel
+# Правая панель (Очередность ходов и таймлайн)
+@onready var round_title_label: Label = $MainHBox/RightPanel/VBox/RoundHeader/RoundTitle
+@onready var countdown_value_label: Label = $MainHBox/RightPanel/VBox/CombatCountdownCard/VBox/CountdownValue
+@onready var cycle_progress_label: Label = $MainHBox/RightPanel/VBox/CombatCountdownCard/VBox/CycleProgressLabel
 
-@onready var hand_container: HBoxContainer = $VBox/HandArea/Scroll/HandContainer
-@onready var target_hint_label: Label = $VBox/HandArea/TargetHintLabel
+@onready var step1_panel: PanelContainer = $MainHBox/RightPanel/VBox/TurnQueueBox/Step1
+@onready var step1_title: Label = $MainHBox/RightPanel/VBox/TurnQueueBox/Step1/VBox/Title
+@onready var step1_status: Label = $MainHBox/RightPanel/VBox/TurnQueueBox/Step1/VBox/Status
 
+@onready var step2_panel: PanelContainer = $MainHBox/RightPanel/VBox/TurnQueueBox/Step2
+@onready var step2_title: Label = $MainHBox/RightPanel/VBox/TurnQueueBox/Step2/VBox/Title
+@onready var step2_status: Label = $MainHBox/RightPanel/VBox/TurnQueueBox/Step2/VBox/Status
+
+@onready var step3_panel: PanelContainer = $MainHBox/RightPanel/VBox/TurnQueueBox/Step3
+@onready var step3_title: Label = $MainHBox/RightPanel/VBox/TurnQueueBox/Step3/VBox/Title
+@onready var step3_status: Label = $MainHBox/RightPanel/VBox/TurnQueueBox/Step3/VBox/Status
+
+@onready var combat_step_box: PanelContainer = $MainHBox/RightPanel/VBox/TurnQueueBox/CombatStep
+
+@onready var end_turn_btn: Button = $MainHBox/RightPanel/VBox/ActionBox/EndTurnButton
+@onready var discard_mode_btn: Button = $MainHBox/RightPanel/VBox/ActionBox/DiscardModeButton
+
+@onready var discard_bar: VBoxContainer = $MainHBox/RightPanel/VBox/ActionBox/DiscardBar
+@onready var discard_info_label: Label = $MainHBox/RightPanel/VBox/ActionBox/DiscardBar/DiscardInfoLabel
+@onready var confirm_discard_btn: Button = $MainHBox/RightPanel/VBox/ActionBox/DiscardBar/HBox/ConfirmDiscardBtn
+@onready var cancel_discard_btn: Button = $MainHBox/RightPanel/VBox/ActionBox/DiscardBar/HBox/CancelDiscardBtn
+
+# Диалоговые окна
 @onready var pay_dialog: PanelContainer = $PaymentDialog
 @onready var pay_dialog_label: Label = $PaymentDialog/VBox/Label
 @onready var pay_mana_btn: Button = $PaymentDialog/VBox/Buttons/PayManaBtn
@@ -67,10 +86,19 @@ var selected_discard_ids: Array = []
 var opp_slot_views: Array[SlotView] = []
 var player_slot_views: Array[SlotView] = []
 
+# Стили для шагов таймлайна
+var step_active_style: StyleBoxFlat
+var step_done_style: StyleBoxFlat
+var step_wait_style: StyleBoxFlat
+var step_combat_active_style: StyleBoxFlat
+var step_combat_wait_style: StyleBoxFlat
+
 func _ready() -> void:
 	local_player_id = multiplayer.get_unique_id()
 	if local_player_id == 0 or (local_player_id == 1 and not NetworkManager.is_host):
 		local_player_id = 1
+	
+	_setup_timeline_styles()
 	
 	end_turn_btn.pressed.connect(_on_end_turn_pressed)
 	discard_mode_btn.pressed.connect(_on_discard_mode_pressed)
@@ -98,6 +126,51 @@ func _ready() -> void:
 		gm.combat_fx_requested.connect(_on_combat_fx_requested)
 		gm.draw_card_fx_requested.connect(_on_draw_card_fx_requested)
 		_on_game_state_updated(gm.game_state)
+
+func _setup_timeline_styles() -> void:
+	step_wait_style = StyleBoxFlat.new()
+	step_wait_style.content_margin_left = 10
+	step_wait_style.content_margin_top = 8
+	step_wait_style.content_margin_right = 10
+	step_wait_style.content_margin_bottom = 8
+	step_wait_style.bg_color = Color("#110e17", 0.85)
+	step_wait_style.border_width_left = 1
+	step_wait_style.border_width_top = 1
+	step_wait_style.border_width_right = 1
+	step_wait_style.border_width_bottom = 1
+	step_wait_style.border_color = Color("#2c223a")
+	step_wait_style.corner_radius_top_left = 6
+	step_wait_style.corner_radius_top_right = 6
+	step_wait_style.corner_radius_bottom_left = 6
+	step_wait_style.corner_radius_bottom_right = 6
+
+	step_active_style = step_wait_style.duplicate()
+	step_active_style.bg_color = Color("#1c162b")
+	step_active_style.border_width_left = 2
+	step_active_style.border_width_top = 2
+	step_active_style.border_width_right = 2
+	step_active_style.border_width_bottom = 2
+	step_active_style.border_color = Color("#38d9a9")
+	step_active_style.shadow_size = 4
+	step_active_style.shadow_color = Color("#38d9a9", 0.3)
+
+	step_done_style = step_wait_style.duplicate()
+	step_done_style.bg_color = Color("#0c0912", 0.6)
+	step_done_style.border_color = Color("#1c1724")
+
+	step_combat_wait_style = step_wait_style.duplicate()
+	step_combat_wait_style.bg_color = Color("#190c10", 0.9)
+	step_combat_wait_style.border_color = Color("#4a1f26")
+
+	step_combat_active_style = step_combat_wait_style.duplicate()
+	step_combat_active_style.bg_color = Color("#2b0e15")
+	step_combat_active_style.border_width_left = 2
+	step_combat_active_style.border_width_top = 2
+	step_combat_active_style.border_width_right = 2
+	step_combat_active_style.border_width_bottom = 2
+	step_combat_active_style.border_color = Color("#ff6b6b")
+	step_combat_active_style.shadow_size = 6
+	step_combat_active_style.shadow_color = Color("#ff6b6b", 0.4)
 
 func _create_slots() -> void:
 	for c in opp_slots_container.get_children():
@@ -148,8 +221,8 @@ func _on_game_state_updated(state: Dictionary) -> void:
 		opp_name_label.text = "💀 " + opp_data.get("name", "Оппонент")
 		opp_mana_label.text = "Мана: %d/%d 🔮" % [opp_data.get("mana", 0), opp_data.get("max_mana", 1)]
 		opp_souls_label.text = "Души: %d 💀" % opp_data.get("souls", 0)
-		opp_score_label.text = "Очки: %d / 10 ⭐" % opp_data.get("score", 0)
-		opp_hand_label.text = "В руке: %d 🎴" % opp_data.get("hand", []).size()
+		opp_score_label.text = "Очки победы: %d / 10 ⭐" % opp_data.get("score", 0)
+		opp_hand_label.text = "В руке врага: %d 🎴" % opp_data.get("hand", []).size()
 		opp_deck_count.text = str(opp_data.get("deck", []).size())
 		opp_graveyard_count.text = "%d 💀" % opp_data.get("graveyard_count", 0)
 	
@@ -157,16 +230,34 @@ func _on_game_state_updated(state: Dictionary) -> void:
 	my_name_label.text = "🧙 " + my_data.get("name", "Вы")
 	my_mana_label.text = "Мана: %d/%d 🔮" % [my_data.get("mana", 0), my_data.get("max_mana", 1)]
 	my_souls_label.text = "Души: %d 💀" % my_data.get("souls", 0)
-	my_score_label.text = "Очки: %d / 10 ⭐" % my_data.get("score", 0)
+	my_score_label.text = "Очки победы: %d / 10 ⭐" % my_data.get("score", 0)
 	player_deck_count.text = str(my_data.get("deck", []).size())
 	player_graveyard_count.text = "%d 💀" % my_data.get("graveyard_count", 0)
 	
-	# 3. Индикация 3 ходов до боя
-	phase_label.text = "ЦИКЛ БОЯ %d" % round_num
+	# 3. Правая панель: Таймлайн и обратный отсчет до боя
+	round_title_label.text = "⚔️  ЦИКЛ БОЯ № %d" % round_num
+	
+	var turns_left = 3 - turn_in_cycle
+	if state.phase == "BATTLE":
+		countdown_value_label.text = "⚔️ ИДЁТ СРАЖЕНИЕ!"
+		countdown_value_label.modulate = Color("#ffd43b")
+	elif turns_left > 1:
+		countdown_value_label.text = "Осталось: %d хода до боя" % turns_left
+		countdown_value_label.modulate = Color("#74c0fc")
+	elif turns_left == 1:
+		countdown_value_label.text = "Остался: 1 ход до боя!"
+		countdown_value_label.modulate = Color("#ffd43b")
+	else:
+		countdown_value_label.text = "СЛЕДУЮЩИЙ ШАГ — БОЙ! ⚔️"
+		countdown_value_label.modulate = Color("#ff6b6b")
+
 	var d1 = "●" if turn_in_cycle >= 1 else "○"
 	var d2 = "●" if turn_in_cycle >= 2 else "○"
 	var d3 = "●" if turn_in_cycle >= 3 else "○"
-	cycle_progress_label.text = "[%s Ход 1] [%s Ход 2] [%s Ход 3]  ➔  ⚔️ БОЙ" % [d1, d2, d3]
+	cycle_progress_label.text = "[%s Ход 1] ➔ [%s Ход 2] ➔ [%s Ход 3] ➔ ⚔️ БОЙ" % [d1, d2, d3]
+	
+	# Обновление карточек очереди ходов в правом сайдбаре
+	_update_turn_queue(state, turn_in_cycle)
 	
 	# Кнопка замены карт
 	var has_discarded = my_data.get("has_discarded_this_turn", false)
@@ -176,33 +267,38 @@ func _on_game_state_updated(state: Dictionary) -> void:
 			discard_mode_btn.text = "Заменено ✓"
 			discard_mode_btn.modulate = Color("#868e96")
 		else:
-			discard_mode_btn.text = "Замена карт 🔄"
+			discard_mode_btn.text = "Замена карт 🔄 (1 раз в ход)"
 			discard_mode_btn.modulate = Color("#ced4da")
 	
+	# Баннер в центре и кнопка завершения хода
 	if state.phase == "PLANNING":
 		if is_my_turn:
 			turn_banner.text = "★ ВАШ ХОД (Ход %d из 3) ★" % turn_in_cycle
 			turn_banner.modulate = Color("#38d9a9")
 			end_turn_btn.disabled = false
 			end_turn_btn.text = "Завершить ход ➔"
+			end_turn_btn.modulate = Color("#38d9a9")
 		else:
 			var opp_name = opp_data.get("name", "Оппонент")
 			turn_banner.text = "Ход оппонента (%s) • %d из 3" % [opp_name, turn_in_cycle]
 			turn_banner.modulate = Color("#adb5bd")
 			end_turn_btn.disabled = true
 			end_turn_btn.text = "Ожидание хода..."
+			end_turn_btn.modulate = Color("#868e96")
 	elif state.phase == "BATTLE":
 		turn_banner.text = "⚔️ ФАЗА БОЯ! РАЗРЕШЕНИЕ СХВАТКИ ⚔️"
 		turn_banner.modulate = Color("#ffd43b")
 		end_turn_btn.disabled = true
-		end_turn_btn.text = "Идет бой..."
+		end_turn_btn.text = "Идёт сражение..."
+		end_turn_btn.modulate = Color("#ffd43b")
 	elif state.phase == "GAME_OVER":
 		turn_banner.text = "МАТЧ ОКОНЧЕН"
 		turn_banner.modulate = Color("#f03e3e")
 		end_turn_btn.disabled = true
+		end_turn_btn.modulate = Color("#868e96")
 		_show_game_over(state)
 	
-	# 4. Обновление существ
+	# 4. Обновление существ на поле
 	var gm = get_node_or_null("/root/Main/GameManager") as GameManager
 	if not opp_data.is_empty():
 		var opp_board = opp_data.get("board", [])
@@ -217,11 +313,77 @@ func _on_game_state_updated(state: Dictionary) -> void:
 		var eff_stats = gm.get_effective_stats(local_player_id, i) if gm else {}
 		player_slot_views[i].update_creature(creature, eff_stats, is_my_turn and not is_in_discard_mode, is_targeting_slot)
 		
-	# 5. Обновление руки
+	# 5. Обновление карт в руке
 	_update_hand(my_data.get("hand", []), my_data.get("mana", 0), my_data.get("souls", 0), is_my_turn)
 	
 	# 6. Обновление лога
 	_render_log(state.get("battle_log", []))
+
+func _update_turn_queue(state: Dictionary, cur_turn: int) -> void:
+	var starter_id = state.get("cycle_starter_id", state.get("p1_id", 1))
+	var second_id = _get_opponent_id(state, starter_id)
+	
+	var starter_name = state.players.get(starter_id, {}).get("name", "Игрок 1")
+	var second_name = state.players.get(second_id, {}).get("name", "Игрок 2")
+	
+	if starter_id == local_player_id:
+		starter_name += " (Вы)"
+	if second_id == local_player_id:
+		second_name += " (Вы)"
+		
+	step1_title.text = "1. Ход: %s" % starter_name
+	step2_title.text = "2. Ход: %s" % second_name
+	step3_title.text = "3. Ход: %s" % starter_name
+	
+	var is_battle = (state.phase == "BATTLE")
+	
+	# Шаг 1
+	if is_battle or cur_turn > 1:
+		step1_status.text = "Завершён ✓"
+		step1_status.modulate = Color("#868e96")
+		step1_panel.add_theme_stylebox_override("panel", step_done_style)
+	elif cur_turn == 1:
+		step1_status.text = "АКТИВЕН СЕЙЧАС ▶"
+		step1_status.modulate = Color("#38d9a9")
+		step1_panel.add_theme_stylebox_override("panel", step_active_style)
+	else:
+		step1_status.text = "Ожидание..."
+		step1_status.modulate = Color("#adb5bd")
+		step1_panel.add_theme_stylebox_override("panel", step_wait_style)
+
+	# Шаг 2
+	if is_battle or cur_turn > 2:
+		step2_status.text = "Завершён ✓"
+		step2_status.modulate = Color("#868e96")
+		step2_panel.add_theme_stylebox_override("panel", step_done_style)
+	elif cur_turn == 2:
+		step2_status.text = "АКТИВЕН СЕЙЧАС ▶"
+		step2_status.modulate = Color("#38d9a9")
+		step2_panel.add_theme_stylebox_override("panel", step_active_style)
+	else:
+		step2_status.text = "Ожидание..."
+		step2_status.modulate = Color("#adb5bd")
+		step2_panel.add_theme_stylebox_override("panel", step_wait_style)
+
+	# Шаг 3
+	if is_battle:
+		step3_status.text = "Завершён ✓"
+		step3_status.modulate = Color("#868e96")
+		step3_panel.add_theme_stylebox_override("panel", step_done_style)
+	elif cur_turn == 3:
+		step3_status.text = "АКТИВЕН СЕЙЧАС ▶"
+		step3_status.modulate = Color("#38d9a9")
+		step3_panel.add_theme_stylebox_override("panel", step_active_style)
+	else:
+		step3_status.text = "Ожидание..."
+		step3_status.modulate = Color("#adb5bd")
+		step3_panel.add_theme_stylebox_override("panel", step_wait_style)
+
+	# Фаза боя
+	if is_battle:
+		combat_step_box.add_theme_stylebox_override("panel", step_combat_active_style)
+	else:
+		combat_step_box.add_theme_stylebox_override("panel", step_combat_wait_style)
 
 # Пошаговая визуализация ударов и урона
 func _on_combat_fx_requested(slot_idx: int, clash_data: Dictionary) -> void:
@@ -245,38 +407,37 @@ func _on_combat_fx_requested(slot_idx: int, clash_data: Dictionary) -> void:
 		var my_dmg = clash_data.c1_dmg if is_p1 else clash_data.c2_dmg
 		var opp_dmg = clash_data.c2_dmg if is_p1 else clash_data.c1_dmg
 		
-		_spawn_floating_text("-%d 🩸" % opp_dmg, Color("#ff6b6b"), o_slot.global_position + Vector2(65, 30))
-		_spawn_floating_text("-%d 🩸" % my_dmg, Color("#ff6b6b"), p_slot.global_position + Vector2(65, 30))
+		_spawn_floating_text("-%d 🩸" % opp_dmg, Color("#ff6b6b"), o_slot.global_position + Vector2(70, 30))
+		_spawn_floating_text("-%d 🩸" % my_dmg, Color("#ff6b6b"), p_slot.global_position + Vector2(70, 30))
 		
 		var my_died = clash_data.c1_died if is_p1 else clash_data.c2_died
 		var opp_died = clash_data.c2_died if is_p1 else clash_data.c1_died
 		
-		# ВНИМАНИЕ: Смерть карты дает ТОЛЬКО душу, но НЕ дает победных очков!
 		if my_died:
-			_spawn_floating_text("💀 ПАЛ! (+1 Душа)", Color("#38d9a9"), p_slot.global_position + Vector2(65, 75))
+			_spawn_floating_text("💀 ПАЛ! (+1 Душа)", Color("#38d9a9"), p_slot.global_position + Vector2(70, 80))
 		if opp_died:
-			_spawn_floating_text("💀 ПАЛ! (+1 Душа)", Color("#38d9a9"), o_slot.global_position + Vector2(65, 75))
+			_spawn_floating_text("💀 ПАЛ! (+1 Душа)", Color("#38d9a9"), o_slot.global_position + Vector2(70, 80))
 			
 	elif (is_p1 and clash_data.direct_p1_dmg > 0) or (not is_p1 and clash_data.direct_p2_dmg > 0):
 		var dmg = clash_data.direct_p1_dmg if is_p1 else clash_data.direct_p2_dmg
 		p_slot.play_attack_anim(true)
-		_spawn_floating_text("+%d ⭐ Прямой удар!" % dmg, Color("#ffd43b"), opp_score_label.global_position + Vector2(50, -5))
+		_spawn_floating_text("+%d ⭐ Прямой удар!" % dmg, Color("#ffd43b"), opp_score_label.global_position + Vector2(60, -5))
 		
 	elif (is_p1 and clash_data.direct_p2_dmg > 0) or (not is_p1 and clash_data.direct_p1_dmg > 0):
 		var dmg = clash_data.direct_p2_dmg if is_p1 else clash_data.direct_p1_dmg
 		o_slot.play_attack_anim(false)
-		_spawn_floating_text("+%d ⭐ Урон по вам!" % dmg, Color("#ff6b6b"), my_score_label.global_position + Vector2(50, -5))
+		_spawn_floating_text("+%d ⭐ Урон по вам!" % dmg, Color("#ff6b6b"), my_score_label.global_position + Vector2(60, -5))
 	
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(0.75).timeout
 	p_slot.set_combat_focus(false)
 	o_slot.set_combat_focus(false)
 
 func _on_draw_card_fx_requested(player_id: int, card_name: String) -> void:
 	if player_id == local_player_id:
-		var deck_pos = $VBox/PlayerBoardArea/PlayerDeck.global_position + Vector2(42, 20)
+		var deck_pos = $MainHBox/CenterArena/PlayerBoardArea/PlayerDeck.global_position + Vector2(48, 24)
 		_spawn_floating_text("+1 🎴 %s" % card_name, Color("#4dabf7"), deck_pos)
 	else:
-		var deck_pos = $VBox/OpponentBoardArea/OppDeck.global_position + Vector2(42, 20)
+		var deck_pos = $MainHBox/CenterArena/OpponentBoardArea/OppDeck.global_position + Vector2(48, 24)
 		_spawn_floating_text("+1 🎴 Взята карта", Color("#adb5bd"), deck_pos)
 
 func _spawn_floating_text(txt: String, color: Color, pos: Vector2) -> void:
@@ -313,69 +474,64 @@ func _can_afford(card: Dictionary, mana: int, souls: int) -> bool:
 		return mana >= m or souls >= s
 	return false
 
-# Режим замены карт
+# --- РЕЖИМ СБРОСА КАРТ ---
 func _on_discard_mode_pressed() -> void:
-	_cancel_selection()
 	is_in_discard_mode = true
 	selected_discard_ids.clear()
-	
-	buttons_row.visible = false
 	discard_bar.visible = true
-	discard_info_label.text = "Выберите карты для замены (0)"
+	buttons_row_visible(false)
+	discard_info_label.text = "Выберите карты для сброса (0)"
 	confirm_discard_btn.disabled = true
 	
 	var gm = get_node_or_null("/root/Main/GameManager") as GameManager
 	if gm:
 		_on_game_state_updated(gm.game_state)
 
-func _on_card_discard_toggled(card_inst_id: int, selected: bool) -> void:
-	if selected:
-		if not selected_discard_ids.has(card_inst_id):
-			selected_discard_ids.append(card_inst_id)
-	else:
-		selected_discard_ids.erase(card_inst_id)
-		
-	discard_info_label.text = "Выберите карты для замены (%d)" % selected_discard_ids.size()
-	confirm_discard_btn.disabled = selected_discard_ids.is_empty()
-
-func _on_confirm_discard_pressed() -> void:
-	if selected_discard_ids.is_empty():
-		return
-	
-	var count = selected_discard_ids.size()
-	var gm = get_node_or_null("/root/Main/GameManager") as GameManager
-	if gm:
-		gm.rpc_id(1, "rpc_request_discard_cards", selected_discard_ids)
-	
-	var d_pos = $VBox/PlayerBoardArea/PlayerDeck.global_position + Vector2(42, 20)
-	_spawn_floating_text("+%d 🎴 Замена!" % count, Color("#4dabf7"), d_pos)
-	
-	_exit_discard_mode()
-
 func _exit_discard_mode() -> void:
 	is_in_discard_mode = false
 	selected_discard_ids.clear()
-	
 	discard_bar.visible = false
-	buttons_row.visible = true
+	buttons_row_visible(true)
 	
 	var gm = get_node_or_null("/root/Main/GameManager") as GameManager
 	if gm:
 		_on_game_state_updated(gm.game_state)
 
+func buttons_row_visible(v: bool) -> void:
+	end_turn_btn.visible = v
+	discard_mode_btn.visible = v
+
+func _on_card_discard_toggled(card_inst_id: int, is_selected: bool) -> void:
+	if is_selected:
+		if not selected_discard_ids.has(card_inst_id):
+			selected_discard_ids.append(card_inst_id)
+	else:
+		selected_discard_ids.erase(card_inst_id)
+	
+	discard_info_label.text = "Выбрано для замены: %d карт" % selected_discard_ids.size()
+	confirm_discard_btn.disabled = selected_discard_ids.is_empty()
+
+func _on_confirm_discard_pressed() -> void:
+	if selected_discard_ids.is_empty():
+		return
+	var gm = get_node_or_null("/root/Main/GameManager")
+	if gm:
+		gm.rpc_id(1, "rpc_request_discard_cards", selected_discard_ids)
+	_exit_discard_mode()
+
+# --- ВЫБОР И РОЗЫГРЫШ КАРТЫ ---
 func _on_card_clicked(card_data: Dictionary) -> void:
 	if is_in_discard_mode:
 		return
-		
+	
 	selected_card_for_play = card_data
 	var gm = get_node_or_null("/root/Main/GameManager") as GameManager
 	if not gm or not gm.game_state.players.has(local_player_id):
 		return
-		
-	var my_data = gm.game_state.players[local_player_id]
-	var cur_mana = my_data.mana
-	var cur_souls = my_data.souls
 	
+	var p = gm.game_state.players[local_player_id]
+	var cur_mana = p.mana
+	var cur_souls = p.souls
 	var mode = card_data.get("pay_mode", "MANA")
 	var m = card_data.get("mana_cost", 0)
 	var s = card_data.get("soul_cost", 0)

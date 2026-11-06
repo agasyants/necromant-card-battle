@@ -1,58 +1,171 @@
-[gd_scene format=3 uid="uid://c6cardviewuid"]
+[gd_scene load_steps=6 format=3 uid="uid://c6cardviewuid"]
 
 [ext_resource type="Script" path="res://scripts/card_view.gd" id="1_script"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_art"]
+bg_color = Color(0.08, 0.06, 0.11, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.24, 0.18, 0.32, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_desc"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 2.0
+bg_color = Color(0.06, 0.05, 0.08, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.14, 0.24, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atk"]
+bg_color = Color(0.45, 0.12, 0.15, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.25, 0.3, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp"]
+bg_color = Color(0.12, 0.35, 0.18, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.8, 0.35, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+
 [node name="CardView" type="PanelContainer"]
-custom_minimum_size = Vector2(145, 195)
-offset_right = 145.0
-offset_bottom = 195.0
+custom_minimum_size = Vector2(170, 245)
+offset_right = 170.0
+offset_bottom = 245.0
+pivot_offset = Vector2(85, 122)
 script = ExtResource("1_script")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Header" type="HBoxContainer" parent="VBox"]
+[node name="Header" type="HBoxContainer" parent="Margin/VBox"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="VBox/Header"]
+[node name="TitleLabel" type="Label" parent="Margin/VBox/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 12
 text = "Костяной Слуга"
 clip_text = true
 
-[node name="CostLabel" type="Label" parent="VBox/Header"]
+[node name="CostLabel" type="Label" parent="Margin/VBox/Header"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.831373, 0.231373, 1)
 theme_override_font_sizes/font_size = 12
 text = "1 🔮"
 
-[node name="CategoryLabel" type="Label" parent="VBox"]
+[node name="ArtFrame" type="PanelContainer" parent="Margin/VBox"]
+clip_contents = true
+custom_minimum_size = Vector2(158, 92)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.65, 0.65, 0.75, 1)
-theme_override_font_sizes/font_size = 10
-text = "Скелет"
+theme_override_styles/panel = SubResource("StyleBoxFlat_art")
 
-[node name="DescLabel" type="Label" parent="VBox"]
+[node name="ArtTexture" type="TextureRect" parent="Margin/VBox/ArtFrame"]
+visible = false
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 11
-text = "При смерти: +1 доп. душа."
-autowrap_mode = 3
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Footer" type="HBoxContainer" parent="VBox"]
+[node name="ArtPlaceholder" type="CenterContainer" parent="Margin/VBox/ArtFrame"]
 layout_mode = 2
 
-[node name="StatsLabel" type="Label" parent="VBox/Footer"]
+[node name="IconLabel" type="Label" parent="Margin/VBox/ArtFrame/ArtPlaceholder"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "💀"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CategoryRibbon" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+
+[node name="CategoryLabel" type="Label" parent="Margin/VBox/CategoryRibbon"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0.42, 0.42, 1)
-theme_override_font_sizes/font_size = 13
-text = "1 ⚔ | 1 🩸"
+theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 9
+text = "С К Е Л Е Т"
 horizontal_alignment = 1
 
-[node name="PlayButton" type="Button" parent="VBox"]
+[node name="DescBox" type="PanelContainer" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_desc")
+
+[node name="DescLabel" type="Label" parent="Margin/VBox/DescBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 10
+text = "При смерти: дарует +1 доп. душу (всего +2)."
+autowrap_mode = 3
+
+[node name="Footer" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+
+[node name="AtkBadge" type="PanelContainer" parent="Margin/VBox/Footer"]
+custom_minimum_size = Vector2(46, 22)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_atk")
+
+[node name="AtkLabel" type="Label" parent="Margin/VBox/Footer/AtkBadge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 11
+text = "1 ⚔"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Margin/VBox/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HpBadge" type="PanelContainer" parent="Margin/VBox/Footer"]
+custom_minimum_size = Vector2(46, 22)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hp")
+
+[node name="HpLabel" type="Label" parent="Margin/VBox/Footer/HpBadge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 1, 0.9, 1)
+theme_override_font_sizes/font_size = 11
+text = "1 🩸"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="Margin/VBox"]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Призвать"
