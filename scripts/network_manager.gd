@@ -106,8 +106,36 @@ func sync_player_list(synced_players: Dictionary) -> void:
 	players = synced_players
 	players_updated.emit()
 
-func get_local_ip() -> String:
+func get_all_local_ips() -> Array[String]:
+	var result: Array[String] = []
 	for ip in IP.get_local_addresses():
-		if ip.begins_with("192.168.") or ip.begins_with("10.") or ip.begins_with("169.254.") or (ip.begins_with("172.") and not ip.begins_with("172.16.0.")):
+		# Фильтруем только IPv4 (содержит точки, без двоеточий)
+		if not ip.contains("."):
+			continue
+		if ip == "127.0.0.1":
+			continue
+		# Исключаем авто-назначенные пустые адреса APIPA (169.254.x.x)
+		if ip.begins_with("169.254."):
+			continue
+		if ip.begins_with("192.168.") or ip.begins_with("10.") or ip.begins_with("172."):
+			if not result.has(ip):
+				result.append(ip)
+	return result
+
+func get_local_ip() -> String:
+	var ips = get_all_local_ips()
+	if ips.is_empty():
+		return "127.0.0.1"
+	# Приоритет 1: Хотспот Windows (192.168.137.x)
+	for ip in ips:
+		if ip.begins_with("192.168.137."):
 			return ip
-	return "127.0.0.1"
+	# Приоритет 2: Локальная Wi-Fi / LAN сеть (192.168.x.x, кроме VirtualBox 192.168.56.x)
+	for ip in ips:
+		if ip.begins_with("192.168.") and not ip.begins_with("192.168.56."):
+			return ip
+	# Приоритет 3: Точка доступа iPhone (172.20.10.x)
+	for ip in ips:
+		if ip.begins_with("172.20.10."):
+			return ip
+	return ips[0]

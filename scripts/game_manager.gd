@@ -90,6 +90,8 @@ func _draw_card_silent(player_id: int) -> void:
 	var card_id = p.deck.pop_front()
 	var template = CardDatabase.get_card(card_id)
 	template["inst_id"] = next_instance_id
+	template["card_id"] = card_id
+	template["id"] = card_id
 	next_instance_id += 1
 	p.hand.append(template)
 
@@ -105,6 +107,8 @@ func _draw_card(player_id: int) -> void:
 	var card_id = p.deck.pop_front()
 	var template = CardDatabase.get_card(card_id)
 	template["inst_id"] = next_instance_id
+	template["card_id"] = card_id
+	template["id"] = card_id
 	next_instance_id += 1
 	p.hand.append(template)
 	
@@ -231,7 +235,8 @@ func rpc_request_play_card(card_inst_id: int, slot_idx: int, payment_choice: Str
 	p.souls -= souls_needed
 	p.hand.remove_at(card_index)
 	
-	var creature = _create_board_creature(card_data.id, sender_id)
+	var cid = card_data.get("card_id", card_data.get("id", ""))
+	var creature = _create_board_creature(cid, sender_id)
 	p.board[slot_idx] = creature
 	_add_log("[color=#4dabf7]%s призывает %s в слот %d.[/color]" % [p.name, creature.name, slot_idx + 1])
 	
@@ -292,7 +297,8 @@ func rpc_request_discard_cards(card_inst_ids: Array) -> void:
 		if card_inst_ids.has(card.inst_id):
 			to_remove.append(i)
 			discarded_names.append(card.name)
-			returned_card_ids.append(card.card_id)
+			var cid = card.get("card_id", card.get("id", ""))
+			returned_card_ids.append(cid)
 	
 	if to_remove.is_empty():
 		return

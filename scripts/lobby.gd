@@ -45,8 +45,16 @@ func _ready() -> void:
 	NetworkManager.players_updated.connect(_on_players_updated)
 	NetworkManager.server_disconnected.connect(_on_server_disconnected)
 	
+	var all_ips = NetworkManager.get_all_local_ips()
 	detected_ip = NetworkManager.get_local_ip()
-	ip_info_label.text = "Ваш IP для второго игрока: " + detected_ip
+	if all_ips.size() > 1:
+		var alt_ips: Array = []
+		for ip in all_ips:
+			if ip != detected_ip:
+				alt_ips.append(ip)
+		ip_info_label.text = "Ваш IP: %s (альт: %s)" % [detected_ip, ", ".join(alt_ips)]
+	else:
+		ip_info_label.text = "Ваш IP для второго игрока: " + detected_ip
 	
 	# Если мы на хотспоте, по умолчанию в поле присоединения подставим типичный IP
 	if detected_ip.begins_with("192.168.137."):
